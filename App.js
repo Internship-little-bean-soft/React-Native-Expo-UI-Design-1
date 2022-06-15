@@ -1,71 +1,82 @@
 import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, TextInput, ScrollView } from 'react-native';
+import { useFonts, Prompt_100Thin, Prompt_700Bold, } from '@expo-google-fonts/prompt';
+import AppLoading from 'expo-app-loading';
 
 export default function App() {
 
-  const [text, onChangeText] = React.useState("Useless Text");
+  const [text, onChangeText] = React.useState("Inut-Text1");
+  const [text2, onChangeText2] = React.useState("Inut-Text2");
 
-  return (
-    <ScrollView style={styles.container}>
-      <View style={ styles.containerB }>
-        <TouchableOpacity
-          onPress={() => alert('Hello, world!')}
-          style={ styles.button }>
-          <Text style={ styles.buttontext }>กลับ</Text>
-        </TouchableOpacity>
-        <Text style={ styles.text }>สร้างการประชุม</Text>
-      </View>
-      <Text style={ styles.text2 }>ชื่อการประชุม</Text>
-      <View style= { styles.center }>
-        <SafeAreaView style= { styles.containerSafeArea }>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeText}
-            value={text}
-            placeholder="ชื่อการประชุม"
-          />
-        </SafeAreaView>
-      </View>
-      <Text style={ styles.text2 }>รายละเอียดการประชุม</Text>
-      <View style= { styles.center }>
-        <SafeAreaView style= { styles.containerSafeArea }>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeText}
-            value={text}
-            multiline
-            numberOfLines={10}
-            placeholder="รายละเอียดการประชุม"
-          />
-        </SafeAreaView>
-      </View>
-      <Text style={ styles.text2 }>ไฟล์แนบ</Text>
-      <View style= { styles.center }>
-        <TouchableOpacity
+  let [fontsLoaded] = useFonts({
+    Prompt_100Thin, Prompt_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <ScrollView style={styles.container}>
+        <View style={ styles.containerB }>
+          <TouchableOpacity
             onPress={() => alert('Hello, world!')}
-            style={ styles.button2 }>
-            <Text style={ styles.buttontext2 }>เพิ่มไฟล์</Text>
-        </TouchableOpacity>
-      </View>
-      <Text style={ styles.text2 }>แท็ก</Text>
-      <View style= { styles.center }>
-        <TouchableOpacity
-            onPress={() => alert('Hello, world!')}
-            style={ styles.button2 }>
-            <Text style={ styles.buttontext2 }>เพิ่มแท็ก</Text>
-        </TouchableOpacity>
-      </View>
-      <View style= { styles.center }>
-        <TouchableOpacity
-            onPress={() => alert('Hello, world!')}
-            style={ styles.button3 }>
-            <Text style={ styles.buttontext3 }>บันทึก</Text>
-        </TouchableOpacity>
-      </View>
-      <StatusBar style="auto" />
-    </ScrollView>
-  );
+            style={ styles.button }>
+            <Text style={ styles.buttontext }>กลับ</Text>
+          </TouchableOpacity>
+          <Text style={ styles.text }>สร้างการประชุม</Text>
+        </View>
+        <Text style={ styles.text2 }>ชื่อการประชุม</Text>
+        <View style= { styles.center }>
+          <SafeAreaView style= { styles.containerSafeArea }>
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeText}
+              value={text}
+              placeholder="ชื่อการประชุม"
+            />
+          </SafeAreaView>
+        </View>
+        <Text style={ styles.text2 }>รายละเอียดการประชุม</Text>
+        <View style= { styles.center }>
+          <SafeAreaView style= { styles.containerSafeArea }>
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeText2}
+              value={text2}
+              multiline
+              numberOfLines={10}
+              placeholder="รายละเอียดการประชุม"
+            />
+          </SafeAreaView>
+        </View>
+        <Text style={ styles.text2 }>ไฟล์แนบ</Text>
+        <View style= { styles.center }>
+          <TouchableOpacity
+              onPress={() => alert('Hello, world!')}
+              style={ styles.button2 }>
+              <Text style={ styles.buttontext2 }>เพิ่มไฟล์</Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={ styles.text2 }>แท็ก</Text>
+        <View style= { styles.center }>
+          <TouchableOpacity
+              onPress={() => alert('Hello, world!')}
+              style={ styles.button2 }>
+              <Text style={ styles.buttontext2 }>เพิ่มแท็ก</Text>
+          </TouchableOpacity>
+        </View>
+        <View style= { styles.center }>
+          <TouchableOpacity
+              onPress={() => alert('Hello, world!')}
+              style={ styles.button3 }>
+              <Text style={ styles.buttontext3 }>บันทึก</Text>
+          </TouchableOpacity>
+        </View>
+        <StatusBar style="auto" />
+      </ScrollView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -73,12 +84,14 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingLeft: 18,
     paddingRight: 18,
+    fontFamily: 'Prompt_700Bold',
   },
   container: {
     flex: 1,
     backgroundColor: '#fff',
     marginTop: 30,
     marginBottom: 40,
+    fontFamily: 'Prompt_700Bold',
   },
   containerB: {
     width: '100%',
@@ -86,12 +99,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
+    fontFamily: 'Prompt_700Bold',
   },
   containerSafeArea: {
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 20,
+    fontFamily: 'Prompt_700Bold',
   },
   button: {
     marginTop: 20,
@@ -106,6 +121,7 @@ const styles = StyleSheet.create({
     borderColor: '#058AFA',
     elevation: 3,
     backgroundColor: 'white',
+    fontFamily: 'Prompt_700Bold',
   },
   buttontext: {
       fontSize: 16,
@@ -126,6 +142,7 @@ const styles = StyleSheet.create({
     borderColor: '#058AFA',
     elevation: 3,
     backgroundColor: 'white',
+    fontFamily: 'Prompt_700Bold',
   },
   buttontext2: {
     fontSize: 16,
@@ -147,6 +164,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#058AFA',
     width: '100%',
     marginBottom: 10,
+    fontFamily: 'Prompt_700Bold',
   },
   buttontext3: {
     fontSize: 16,
@@ -181,5 +199,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderWidth: 1,
     borderColor: 'black',
+    fontFamily: 'Prompt_700Bold',
   },
 });
