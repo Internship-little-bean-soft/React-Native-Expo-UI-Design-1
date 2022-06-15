@@ -1,52 +1,172 @@
+import React from "react";
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, SafeAreaView, ScrollView } from 'react-native';
-import Appbar_Header from './components/Appbar-Header';
-import Button1 from './components/Button1';
-import Button2 from './components/Button2';
-import Button3 from './components/Button3';
-import InputText1 from './components/InputText1';
-import InputText2 from './components/InputText2';
-import AppLoading from 'expo-app-loading';
-import { useFonts, Prompt_100Thin, Prompt_700Bold, } from '@expo-google-fonts/prompt';
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView, TextInput, ScrollView } from 'react-native';
 
 export default function App() {
 
-  let [fontsLoaded] = useFonts({
-    Prompt_100Thin, Prompt_700Bold,
-  });
-
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
+  const [text, onChangeText] = React.useState("Useless Text");
 
   return (
-    <ScrollView style={ styles.container }>
-      <Appbar_Header/>
+    <ScrollView style={styles.container}>
+      <View style={ styles.containerB }>
+        <TouchableOpacity
+          onPress={() => alert('Hello, world!')}
+          style={ styles.button }>
+          <Text style={ styles.buttontext }>กลับ</Text>
+        </TouchableOpacity>
+        <Text style={ styles.text }>สร้างการประชุม</Text>
+      </View>
+      <Text style={ styles.text2 }>ชื่อการประชุม</Text>
+      <View style= { styles.center }>
+        <SafeAreaView style= { styles.containerSafeArea }>
+          <TextInput
+            style={styles.input}
+            onChangeText={onChangeText}
+            value={text}
+            placeholder="ชื่อการประชุม"
+          />
+        </SafeAreaView>
+      </View>
+      <Text style={ styles.text2 }>รายละเอียดการประชุม</Text>
+      <View style= { styles.center }>
+        <SafeAreaView style= { styles.containerSafeArea }>
+          <TextInput
+            style={styles.input}
+            onChangeText={onChangeText}
+            value={text}
+            multiline
+            numberOfLines={10}
+            placeholder="รายละเอียดการประชุม"
+          />
+        </SafeAreaView>
+      </View>
+      <Text style={ styles.text2 }>ไฟล์แนบ</Text>
+      <View style= { styles.center }>
+        <TouchableOpacity
+            onPress={() => alert('Hello, world!')}
+            style={ styles.button2 }>
+            <Text style={ styles.buttontext2 }>เพิ่มไฟล์</Text>
+        </TouchableOpacity>
+      </View>
+      <Text style={ styles.text2 }>แท็ก</Text>
+      <View style= { styles.center }>
+        <TouchableOpacity
+            onPress={() => alert('Hello, world!')}
+            style={ styles.button2 }>
+            <Text style={ styles.buttontext2 }>เพิ่มแท็ก</Text>
+        </TouchableOpacity>
+      </View>
+      <View style= { styles.center }>
+        <TouchableOpacity
+            onPress={() => alert('Hello, world!')}
+            style={ styles.button3 }>
+            <Text style={ styles.buttontext3 }>บันทึก</Text>
+        </TouchableOpacity>
+      </View>
       <StatusBar style="auto" />
-      <Text style={ styles.text }>ชื่อการประชุม</Text>
-      <View style= { styles.center }><InputText1/></View>
-      <Text style={ styles.text }>รายละเอียดการประชุม</Text>
-      <View style= { styles.center }><InputText2/></View>
-      <Text style={ styles.text }>ไฟล์แนบ</Text>
-      <View style= { styles.center }><Button1/></View>
-      <Text style={ styles.text }>แท็ก</Text>
-      <View style= { styles.center }><Button2/></View>
-      <View style= { styles.center }><Button3/></View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-
+  center: {
+    width: '100%',
+    paddingLeft: 18,
+    paddingRight: 18,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    fontFamily: 'Prompt_700Bold',
-    marginTop: 40,
+    marginTop: 30,
     marginBottom: 40,
   },
+  containerB: {
+    width: '100%',
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  containerSafeArea: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 20,
+  },
+  button: {
+    marginTop: 20,
+    marginLeft: 20,
+    width: '25%',
+    height: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#058AFA',
+    elevation: 3,
+    backgroundColor: 'white',
+  },
+  buttontext: {
+      fontSize: 16,
+      lineHeight: 21,
+      fontWeight: 'bold',
+      letterSpacing: 0.25,
+      color: '#058AFA',
+      fontFamily: 'Prompt_700Bold',
+  },
+  button2: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    marginBottom: 20,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#058AFA',
+    elevation: 3,
+    backgroundColor: 'white',
+  },
+  buttontext2: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: '#058AFA',
+    fontFamily: 'Prompt_700Bold',
+  },
+  button3: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#058AFA',
+    elevation: 3,
+    backgroundColor: '#058AFA',
+    width: '100%',
+    marginBottom: 10,
+  },
+  buttontext3: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+    fontFamily: 'Prompt_700Bold',
+  },
   text: {
+      marginTop: 20,
+      marginLeft: 8,
+      fontSize: 16,
+      lineHeight: 21,
+      fontWeight: 'bold',
+      letterSpacing: 0.25,
+      color: '#058AFA',
+      fontFamily: 'Prompt_700Bold',
+  },
+  text2: {
     color: 'black',
     fontSize: 18,
     marginHorizontal: 20,
@@ -55,9 +175,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Prompt_700Bold',
   },
-  center: {
+  input: {
     width: '100%',
-    paddingLeft: 18,
-    paddingRight: 18,
-  }
+    padding: 10,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: 'black',
+  },
 });
